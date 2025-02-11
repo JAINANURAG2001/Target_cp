@@ -103,7 +103,7 @@ void _print(map<T, V> v)
     }
     cerr << "]";
 }
-
+// important thing is it can be in decimal so we need to take care of that and also about precession
 bool possible(vector<int> ropes, lld x, int k)
 {
     int count = 0;
@@ -145,7 +145,7 @@ void solve()
         cin >> ropes[i];
     }
 
-    cout << setprecision(7)<<fixed<<(ropes, k) << endl;
+    cout << setprecision(7) << fixed << (ropes, k) << endl;
 }
 
 int32_t main()
