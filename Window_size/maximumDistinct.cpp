@@ -114,28 +114,70 @@ void solve()
     cin>>n>>k ;
 
     vector<int> v(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
+   for(auto & i : v){
+        cin>>i;
     }
-    int maxi=0;
+    // methid -1
 
-    for (int i = 0; i < n-k; i++)
-    {
-            set<int>s ;
+    // int maxi=0;
+    // for (int i = 0; i < n-k; i++)
+    // {
+    //         set<int>s ;
 
-            for(int j=i ;j<i+k;j++){
-                s.insert(v[j]);
-            }
+    //         for(int j=i ;j<i+k;j++){
+    //             s.insert(v[j]);
+    //         }
 
-            int ans = s.size();
-            maxi=max(maxi, ans);
+    //         int ans = s.size();
+    //         maxi=max(maxi, ans);
         
+    // }
+    // cout<<maxi <<endl ;
+
+
+
+    // Method -2
+    map<int , int > mp ;
+
+
+    for (int i=0;i<k ;i++){
+        mp[v[i]]++ ;
     }
-    cout<<maxi <<endl ;
+
+    int ans = mp.size() ;
+
+    for(int i=k ;i<n ;i++){
+        mp[v[i]]++ ;
+        mp[v[i-k]]-- ;
+        if(mp[v[i-k]]==0){
+            mp.erase(v[i-k]);
+        }
+        ans = max(ans , (int)mp.size());
+    }
+
+cout<<ans <<endl ;
 
 
+    // Method -3
+    // unordered_map<int , int > mp ;
+    // int i=0,j=0, ans = 0 ;
 
+    // while(j<n){
+    //     mp[v[j]]++ ;
+    //     if(j-i+1 < k){
+    //         j++;
+    //     }
+    //     else if(j-i+1 == k){
+    //         ans = max(ans , (int)mp.size());
+    //         mp[v[i]]-- ;
+    //         if(mp[v[i]]==0){
+    //             mp.erase(v[i]);
+    //         }
+    //         i++;
+    //         j++;
+    //     }
+    // }
+    // cout<<ans <<endl ;
 
 }
 
